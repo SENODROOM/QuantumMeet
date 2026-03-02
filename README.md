@@ -1,361 +1,308 @@
-# Meet Board - Real-Time Collaboration Platform
+# ⬡ QuantumMeet
 
-A full-stack video conferencing and collaboration platform with WebRTC, real-time chat, and collaborative whiteboard features.
+> **Video calls at the speed of light.**  
+> A full-stack, real-time video conferencing app built with MERN stack, WebRTC, and Socket.io.
+
+![QuantumMeet Banner](https://placehold.co/900x300/050810/00d4ff?text=⬡+QuantumMeet&font=monospace)
+
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---|---|
+| 🔗 **Instant Rooms** | Create shareable meeting links with one click |
+| 📹 **HD Video Calls** | Peer-to-peer WebRTC video with multiple participants |
+| 🎙️ **Audio Controls** | Mute/unmute microphone on the fly |
+| 📷 **Video Toggle** | Enable/disable camera mid-call |
+| 🖥️ **Screen Sharing** | Share your full screen or a specific window |
+| 💬 **In-Room Chat** | Real-time text messaging with Socket.io |
+| 🔒 **P2P Encrypted** | Direct WebRTC connections (no video relayed through server) |
+| 🗄️ **MongoDB Rooms** | Rooms auto-expire after 24 hours |
+| ⚡ **No Signup** | Enter a name and go — no account required |
+
+---
+
+## 🏗️ Architecture
+
+```
+QuantumMeet/
+├── server/                 # Node.js + Express + Socket.io backend
+│   ├── index.js            # Main server (REST API + WebSocket signaling)
+│   ├── .env.example        # Environment variable template
+│   └── package.json
+│
+├── client/                 # React frontend
+│   ├── public/
+│   │   └── index.html
+│   ├── src/
+│   │   ├── App.js              # Router setup
+│   │   ├── App.css             # Global styles + design tokens
+│   │   ├── context/
+│   │   │   └── SocketContext.js  # Socket.io React context
+│   │   ├── hooks/
+│   │   │   └── useWebRTC.js    # WebRTC peer connection logic
+│   │   ├── pages/
+│   │   │   ├── Home.js         # Landing / create / join
+│   │   │   └── Room.js         # Main meeting room
+│   │   └── components/
+│   │       ├── VideoTile.js    # Individual video stream tile
+│   │       ├── Controls.js     # Mute / Camera / Share / Chat / Leave
+│   │       └── ChatPanel.js    # Slide-in chat drawer
+│   └── package.json
+│
+├── package.json            # Root helper scripts
+└── README.md
+```
+
+### How It Works
+
+```
+Client A                     Server                    Client B
+   |                           |                           |
+   |── POST /api/rooms ──────>|                           |
+   |<─ { roomId, link } ──────|                           |
+   |                           |                           |
+   |── WS: join-room ────────>|<── WS: join-room ─────────|
+   |<─ existing-peers ─────────|── user-joined ──────────>|
+   |                           |                           |
+   |── offer ────────────────>|── offer ─────────────────>|
+   |<─ answer ─────────────────|<─ answer ─────────────────|
+   |── ice-candidate ─────────>|── ice-candidate ─────────>|
+   |                           |                           |
+   |◄══════════════ P2P WebRTC (direct) ══════════════════►|
+   |                           |                           |
+   |── chat-message ──────────>|── chat-message ──────────>|
+```
+
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ and npm
-- Docker Desktop (for databases)
-- Git
 
-### Installation & Setup
+- **Node.js** ≥ 18.x — [download](https://nodejs.org)
+- **MongoDB** — local install or [MongoDB Atlas](https://www.mongodb.com/atlas) (free tier)
+- **npm** ≥ 9.x
 
-1. **Clone and Install**
+### 1. Clone / Extract the Project
+
 ```bash
-git clone <repository-url>
-cd meet-board
+# If you downloaded the zip:
+unzip QuantumMeet.zip
+cd QuantumMeet
+```
+
+### 2. Set Up the Server
+
+```bash
+cd server
+
+# Copy env file and configure it
+cp .env.example .env
+```
+
+Edit `server/.env`:
+```env
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/quantummeet
+CLIENT_URL=http://localhost:3000
+```
+
+> **Note:** The server works even without MongoDB — rooms are tracked in-memory only. MongoDB adds persistence and auto-expiry.
+
+```bash
 npm install
-cd frontend && npm install
-cd ../backend && npm install
+npm run dev     # starts with nodemon (auto-reload)
+# or
+npm start       # starts with node
 ```
 
-2. **Start the Application**
+You should see:
+```
+✅ MongoDB connected
+🚀 Server running on http://localhost:5000
+```
+
+### 3. Set Up the Client
+
+Open a **new terminal**:
+
 ```bash
-# From the backend directory
-cd backend
-npm run dev
-```
+cd client
 
-This will automatically:
-- Start all Docker services (PostgreSQL, MongoDB, Redis, MinIO)
-- Initialize databases
-- Start the backend server on port 3001
+# Copy env file
+cp .env.example .env
+# (default values work for local development)
 
-3. **Start Frontend** (in a new terminal)
-```bash
-cd frontend
-npm run dev
-```
-
-Frontend will be available at: http://localhost:3000 (or 3002 if 3000 is busy)
-
-## 🏗️ Architecture
-
-### Tech Stack
-
-**Frontend:**
-- Next.js 14 (React 18)
-- TypeScript
-- Tailwind CSS
-- Zustand (State Management)
-- Socket.io Client
-- Fabric.js (Whiteboard)
-- Simple-peer (WebRTC)
-
-**Backend:**
-- Node.js + Express
-- TypeScript
-- Socket.io
-- PostgreSQL (User data)
-- MongoDB (Chat messages)
-- Redis (Sessions & caching)
-- MinIO (S3-compatible file storage)
-
-### Project Structure
-```
-meet-board/
-├── frontend/               # Next.js frontend
-│   ├── src/
-│   │   ├── app/           # Next.js 14 app router
-│   │   ├── components/    # React components
-│   │   ├── hooks/         # Custom React hooks
-│   │   ├── services/      # API services
-│   │   ├── store/         # Zustand stores
-│   │   └── types/         # TypeScript types
-│   └── package.json
-│
-├── backend/               # Express backend
-│   ├── src/
-│   │   ├── config/       # Database configs
-│   │   ├── controllers/  # Route controllers
-│   │   ├── middleware/   # Express middleware
-│   │   ├── models/       # Data models
-│   │   ├── routes/       # API routes
-│   │   ├── sockets/      # Socket.io handlers
-│   │   └── types/        # TypeScript types
-│   ├── scripts/          # Setup scripts
-│   └── package.json
-│
-├── docker-compose.yml    # Docker services
-└── .env                  # Root environment variables
-```
-
-## 🔧 Configuration
-
-### Environment Variables
-
-**Root `.env`:**
-```env
-POSTGRES_PASSWORD=SecurePassword123!
-MONGO_PASSWORD=SecurePassword123!
-REDIS_PASSWORD=SecurePassword123!
-MINIO_ROOT_USER=admin
-MINIO_ROOT_PASSWORD=SecurePassword123!
-```
-
-**Backend `.env`:**
-```env
-NODE_ENV=development
-PORT=3001
-DATABASE_URL=postgresql://rtc_user:SecurePassword123%21@localhost:5432/rtc_app
-MONGODB_URI=<your-mongodb-uri>
-REDIS_URL=redis://default:SecurePassword123!@localhost:6379
-JWT_SECRET=<your-jwt-secret>
-JWT_REFRESH_SECRET=<your-refresh-secret>
-S3_ENDPOINT=http://localhost:9000
-S3_ACCESS_KEY=admin
-S3_SECRET_KEY=SecurePassword123!
-S3_BUCKET=rtc-files
-FRONTEND_URL=http://localhost:3000,http://localhost:3002
-```
-
-**Frontend `.env.local`:**
-```env
-NEXT_PUBLIC_API_URL=http://localhost:3001
-NEXT_PUBLIC_WS_URL=http://localhost:3001
-PORT=3000
-```
-
-## 🎯 Features
-
-### Core Features
-- **Video Conferencing**: WebRTC-based peer-to-peer video calls
-- **Real-time Chat**: Socket.io powered instant messaging
-- **Collaborative Whiteboard**: Multi-user drawing with Fabric.js
-- **File Sharing**: Upload and share files via MinIO S3 storage
-- **User Authentication**: JWT-based auth with refresh tokens
-- **Room Management**: Create and join meeting rooms
-
-### Security Features
-- Helmet.js security headers
-- CORS protection
-- Rate limiting
-- Password hashing (bcrypt)
-- JWT token authentication
-- Secure cookie handling
-
-## 📡 API Endpoints
-
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - Login user
-- `POST /api/auth/logout` - Logout user
-- `POST /api/auth/refresh` - Refresh access token
-- `GET /api/auth/profile` - Get user profile (protected)
-
-### Rooms
-- `POST /api/rooms` - Create room (protected)
-- `GET /api/rooms/:id` - Get room details (protected)
-- `GET /api/rooms` - List user's rooms (protected)
-
-### Chat
-- `GET /api/chat/:roomId` - Get chat history (protected)
-
-### Files
-- `POST /api/files/upload` - Upload file (protected)
-- `GET /api/files/:fileId` - Download file (protected)
-
-### Health
-- `GET /health` - Health check
-- `GET /ready` - Readiness check
-
-## 🔌 Socket.io Events
-
-### WebRTC Signaling
-- `join-room` - Join a room
-- `offer` - Send WebRTC offer
-- `answer` - Send WebRTC answer
-- `ice-candidate` - Exchange ICE candidates
-- `leave-room` - Leave room
-
-### Chat
-- `chat-message` - Send/receive messages
-- `typing` - Typing indicators
-
-### Whiteboard
-- `whiteboard-draw` - Drawing events
-- `whiteboard-clear` - Clear whiteboard
-- `whiteboard-undo` - Undo action
-
-## 🐳 Docker Services
-
-The application uses Docker Compose to manage services:
-
-- **PostgreSQL** (port 5432): User accounts and room data
-- **MongoDB** (port 27017): Chat messages and logs
-- **Redis** (port 6379): Session storage and caching
-- **MinIO** (ports 9000, 9001): S3-compatible file storage
-
-### Docker Commands
-```bash
-# Start all services
-docker-compose up -d
-
-# Stop all services
-docker-compose down
-
-# View logs
-docker-compose logs -f
-
-# Restart a service
-docker-compose restart <service-name>
-```
-
-## 🛠️ Development
-
-### Running in Development Mode
-
-**Backend:**
-```bash
-cd backend
-npm run dev  # Starts with ts-node-dev (hot reload)
-```
-
-**Frontend:**
-```bash
-cd frontend
-npm run dev  # Starts Next.js dev server
-```
-
-### Building for Production
-
-**Backend:**
-```bash
-cd backend
-npm run build
+npm install
 npm start
 ```
 
-**Frontend:**
-```bash
-cd frontend
-npm run build
-npm start
-```
-
-### Using Docker Compose (Full Stack)
-```bash
-docker-compose up --build
-```
-
-## 🐛 Troubleshooting
-
-### Port Already in Use
-```bash
-# Windows - Kill process on port
-netstat -ano | findstr :3000
-taskkill /PID <PID> /F
-
-# Or use the provided script
-KILL_PORTS.bat
-```
-
-### Database Connection Issues
-```bash
-# Check if Docker containers are running
-docker ps
-
-# Restart Docker services
-docker-compose restart
-
-# Check logs
-docker-compose logs postgres
-docker-compose logs mongodb
-docker-compose logs redis
-```
-
-### Redis Connection Error
-- Ensure Redis URL format: `redis://default:password@localhost:6379`
-- Check password matches in `.env` and `backend/.env`
-
-### PostgreSQL Authentication Failed
-- URL encode special characters in password (! becomes %21)
-- Example: `SecurePassword123!` → `SecurePassword123%21`
-
-### Frontend Can't Connect to Backend
-- Check CORS settings in `backend/src/index.ts`
-- Verify `FRONTEND_URL` in `backend/.env` includes your frontend port
-- Ensure backend is running on port 3001
-
-## 📝 Scripts
-
-### Backend Scripts
-- `npm run dev` - Start development server
-- `npm run build` - Build TypeScript
-- `npm start` - Start production server
-- `npm run migrate` - Run database migrations
-
-### Frontend Scripts
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm start` - Start production server
-- `npm run lint` - Run ESLint
-
-## 🔐 Security Notes
-
-- Change all default passwords in production
-- Use strong JWT secrets (minimum 32 characters)
-- Enable HTTPS in production
-- Configure proper CORS origins
-- Set up rate limiting appropriately
-- Use environment variables for sensitive data
-- Never commit `.env` files to version control
-
-## 📦 Database Initialization
-
-The backend automatically:
-1. Creates database tables on first run
-2. Sets up MinIO buckets
-3. Initializes Redis connection
-4. Connects to MongoDB
-
-Manual initialization:
-```bash
-cd backend
-npm run migrate
-```
-
-## 🚢 Deployment
-
-### Environment Setup
-1. Set `NODE_ENV=production`
-2. Update all URLs to production domains
-3. Use strong passwords and secrets
-4. Configure SSL/TLS certificates
-5. Set up proper CORS origins
-
-### Recommended Hosting
-- **Frontend**: Vercel, Netlify, or AWS Amplify
-- **Backend**: AWS EC2, DigitalOcean, or Heroku
-- **Databases**: Managed services (AWS RDS, MongoDB Atlas, Redis Cloud)
-- **Storage**: AWS S3 or DigitalOcean Spaces
-
-## 📄 License
-
-[Your License Here]
-
-## 👥 Contributing
-
-[Your Contributing Guidelines Here]
-
-## 📞 Support
-
-For issues and questions:
-- Create an issue on GitHub
-- Check existing documentation
-- Review troubleshooting section
+React starts at **http://localhost:3000** and opens in your browser.
 
 ---
 
-**Built with ❤️ using Next.js, Express, and WebRTC**
+## 🧪 Quick Test
+
+### Test A: Single Browser (Basic UI)
+
+1. Open **http://localhost:3000**
+2. Enter your name → click **New Meeting**
+3. Copy the meeting link displayed
+4. Click **Join Now** → you enter the room
+5. You'll see your own camera feed with your name tag
+6. The controls bar shows: Mute | Camera | Share Screen | Chat | Leave
+
+### Test B: Two Participants (Full WebRTC)
+
+1. Open **http://localhost:3000** in **Browser 1** (Chrome)
+2. Enter name "Alice" → Create meeting → copy link → Join Now
+3. Open the same link in **Browser 2** (or a different browser / incognito)
+4. Enter name "Bob" → you're now in the same call
+5. ✅ You should see both video streams
+6. Test mute, camera off, chat, and screen share
+
+### Test C: API Health Check
+
+```bash
+# Check server health
+curl http://localhost:5000/api/health
+
+# Create a room via API
+curl -X POST http://localhost:5000/api/rooms \
+  -H "Content-Type: application/json" \
+  -d '{"userId":"test123"}'
+```
+
+Expected response:
+```json
+{
+  "roomId": "abc-1234-xyz",
+  "link": "http://localhost:3000/room/abc-1234-xyz"
+}
+```
+
+---
+
+## 🌐 WebSocket Events Reference
+
+### Client → Server
+
+| Event | Payload | Description |
+|---|---|---|
+| `join-room` | `{ roomId, userId, userName }` | Join a meeting room |
+| `offer` | `{ to, from, offer, userName }` | WebRTC offer to peer |
+| `answer` | `{ to, from, answer }` | WebRTC answer to offer |
+| `ice-candidate` | `{ to, from, candidate }` | ICE candidate exchange |
+| `chat-message` | `{ roomId, message, userName, userId }` | Send chat message |
+| `toggle-audio` | `{ roomId, userId, enabled }` | Notify peers of audio state |
+| `toggle-video` | `{ roomId, userId, enabled }` | Notify peers of video state |
+
+### Server → Client
+
+| Event | Payload | Description |
+|---|---|---|
+| `existing-peers` | `[{ socketId, userId, userName }]` | Peers already in room |
+| `user-joined` | `{ socketId, userId, userName }` | New user joined |
+| `user-left` | `{ socketId, userName }` | User disconnected |
+| `offer` | `{ from, offer, userName }` | Incoming WebRTC offer |
+| `answer` | `{ from, answer }` | Incoming WebRTC answer |
+| `ice-candidate` | `{ from, candidate }` | Incoming ICE candidate |
+| `chat-message` | `{ id, message, userName, userId, timestamp }` | Incoming chat message |
+| `peer-audio-toggle` | `{ socketId, userId, enabled }` | Peer muted/unmuted |
+| `peer-video-toggle` | `{ socketId, userId, enabled }` | Peer camera toggled |
+
+---
+
+## 🔧 REST API
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/rooms` | Create a new meeting room |
+| `GET` | `/api/rooms/:roomId` | Get room details |
+| `GET` | `/api/health` | Server health check |
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| **Frontend** | React 18, React Router v6, CSS Modules |
+| **Backend** | Node.js, Express.js |
+| **Real-time** | Socket.io (WebSocket signaling) |
+| **Video** | WebRTC (browser-native P2P) |
+| **Database** | MongoDB + Mongoose (optional) |
+| **Styling** | CSS Modules, Google Fonts (Syne + Space Mono) |
+| **ICE Servers** | Google STUN servers (free) |
+
+---
+
+## 🔒 Security Notes
+
+- Video/audio streams are **peer-to-peer** — they never touch the server
+- The server only handles **signaling** (offer/answer/ICE exchange)
+- Rooms auto-expire in MongoDB after **24 hours**
+- For production, add TURN servers for users behind strict NAT/firewalls
+
+---
+
+## 📦 Production Deployment
+
+### Using Environment Variables
+
+**Server** (`server/.env`):
+```env
+PORT=5000
+MONGO_URI=mongodb+srv://user:pass@cluster.mongodb.net/quantummeet
+CLIENT_URL=https://yourdomain.com
+```
+
+**Client** (`client/.env`):
+```env
+REACT_APP_SERVER_URL=https://your-server-domain.com
+```
+
+### Build the React App
+
+```bash
+cd client
+npm run build
+# Outputs to client/build/
+```
+
+Serve `client/build` with nginx, Vercel, Netlify, or any static host.
+Deploy the `server/` to Railway, Render, or any Node.js host.
+
+---
+
+## 🐛 Troubleshooting
+
+**Camera/mic not working?**
+- Allow browser permissions when prompted
+- Try HTTPS (some browsers block getUserMedia on HTTP in production)
+
+**Participants can't see each other?**
+- Check both clients point to the same server URL
+- Check the server console for join/signal logs
+- Try in the same local network first
+
+**MongoDB connection fails?**
+- The server still works without MongoDB (rooms are in-memory)
+- Check `MONGO_URI` in `.env`
+- For Atlas: ensure your IP is whitelisted
+
+**Port already in use?**
+- Change `PORT` in `server/.env`
+- Kill existing processes: `lsof -ti:5000 | xargs kill`
+
+---
+
+## 📄 License
+
+MIT — free to use, modify, and distribute.
+
+---
+
+<p align="center">Built with ⚡ using WebRTC + Socket.io + React + Node.js</p>
