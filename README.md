@@ -13,6 +13,13 @@
 |---|---|
 | 🔗 **Instant Rooms** | Create shareable meeting links with one click |
 | 📹 **HD Video Calls** | Peer-to-peer WebRTC video with multiple participants |
+| 📱 **Fully Responsive** | Optimized UI that scales beautifully on Mobile and Tablets |
+| 🪟 **Picture-in-Picture (PiP)** | Native Document PiP to keep videos floating while changing tabs |
+| 📝 **Live Transcription** | Real-time speech-to-text transcription panel during meetings |
+| ✋ **Interactive Q&A / Polls** | Ask questions, upvote, and run real-time polls seamlessly |
+| 🎨 **Collaborative Whiteboard** | Built-in synced whiteboard for drawing and explaining ideas |
+| 🚪 **Breakout Rooms** | Split the main meeting into smaller, focused sub-rooms |
+| 🕵️ **SecretMeet** | Anonymous random matching for instant 1-on-1 networking |
 | 🎙️ **Audio Controls** | Mute/unmute microphone on the fly |
 | 📷 **Video Toggle** | Enable/disable camera mid-call |
 | 🖥️ **Screen Sharing** | Share your full screen or a specific window |
@@ -48,6 +55,7 @@ QuantumMeet/
 │   │   └── components/
 │   │       ├── VideoTile.js    # Individual video stream tile
 │   │       ├── Controls.js     # Mute / Camera / Share / Chat / Leave
+│   │       ├── PipWindow.js    # Picture-in-Picture window layout
 │   │       └── ChatPanel.js    # Slide-in chat drawer
 │   └── package.json
 │
@@ -81,15 +89,14 @@ Client A                     Server                    Client B
 
 ### Prerequisites
 
-- **Node.js** ≥ 18.x — [download](https://nodejs.org)
+- **Node.js** ≥ 18.x
 - **MongoDB** — local install or [MongoDB Atlas](https://www.mongodb.com/atlas) (free tier)
 - **npm** ≥ 9.x
 
 ### 1. Clone / Extract the Project
 
 ```bash
-# If you downloaded the zip:
-unzip QuantumMeet.zip
+git clone https://github.com/your-username/QuantumMeet.git
 cd QuantumMeet
 ```
 
@@ -118,12 +125,6 @@ npm run dev     # starts with nodemon (auto-reload)
 npm start       # starts with node
 ```
 
-You should see:
-```
-✅ MongoDB connected
-🚀 Server running on http://localhost:5000
-```
-
 ### 3. Set Up the Client
 
 Open a **new terminal**:
@@ -133,7 +134,6 @@ cd client
 
 # Copy env file
 cp .env.example .env
-# (default values work for local development)
 
 npm install
 npm start
@@ -151,8 +151,6 @@ React starts at **http://localhost:3000** and opens in your browser.
 2. Enter your name → click **New Meeting**
 3. Copy the meeting link displayed
 4. Click **Join Now** → you enter the room
-5. You'll see your own camera feed with your name tag
-6. The controls bar shows: Mute | Camera | Share Screen | Chat | Leave
 
 ### Test B: Two Participants (Full WebRTC)
 
@@ -161,27 +159,6 @@ React starts at **http://localhost:3000** and opens in your browser.
 3. Open the same link in **Browser 2** (or a different browser / incognito)
 4. Enter name "Bob" → you're now in the same call
 5. ✅ You should see both video streams
-6. Test mute, camera off, chat, and screen share
-
-### Test C: API Health Check
-
-```bash
-# Check server health
-curl http://localhost:5000/api/health
-
-# Create a room via API
-curl -X POST http://localhost:5000/api/rooms \
-  -H "Content-Type: application/json" \
-  -d '{"userId":"test123"}'
-```
-
-Expected response:
-```json
-{
-  "roomId": "abc-1234-xyz",
-  "link": "http://localhost:3000/room/abc-1234-xyz"
-}
-```
 
 ---
 
@@ -195,9 +172,6 @@ Expected response:
 | `offer` | `{ to, from, offer, userName }` | WebRTC offer to peer |
 | `answer` | `{ to, from, answer }` | WebRTC answer to offer |
 | `ice-candidate` | `{ to, from, candidate }` | ICE candidate exchange |
-| `chat-message` | `{ roomId, message, userName, userId }` | Send chat message |
-| `toggle-audio` | `{ roomId, userId, enabled }` | Notify peers of audio state |
-| `toggle-video` | `{ roomId, userId, enabled }` | Notify peers of video state |
 
 ### Server → Client
 
@@ -207,21 +181,6 @@ Expected response:
 | `user-joined` | `{ socketId, userId, userName }` | New user joined |
 | `user-left` | `{ socketId, userName }` | User disconnected |
 | `offer` | `{ from, offer, userName }` | Incoming WebRTC offer |
-| `answer` | `{ from, answer }` | Incoming WebRTC answer |
-| `ice-candidate` | `{ from, candidate }` | Incoming ICE candidate |
-| `chat-message` | `{ id, message, userName, userId, timestamp }` | Incoming chat message |
-| `peer-audio-toggle` | `{ socketId, userId, enabled }` | Peer muted/unmuted |
-| `peer-video-toggle` | `{ socketId, userId, enabled }` | Peer camera toggled |
-
----
-
-## 🔧 REST API
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/rooms` | Create a new meeting room |
-| `GET` | `/api/rooms/:roomId` | Get room details |
-| `GET` | `/api/health` | Server health check |
 
 ---
 
