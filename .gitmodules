@@ -1,6 +1,6 @@
 [submodule "client"]
 	path = client
-	url = https://github.com/SENODROOM/QuantumMind-Frontend.git
+	url = https://github.com/SENODROOM/MeetBoard-Frontend.git
 [submodule "server"]
 	path = server
-	url = https://github.com/SENODROOM/QuantumMind-Backend.git
+	url = https://github.com/SENODROOM/MeetBoard-Backend.git
