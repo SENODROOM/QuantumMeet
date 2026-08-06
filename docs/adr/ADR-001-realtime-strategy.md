@@ -3,7 +3,7 @@
 - **Status:** Accepted (program baseline)  
 - **Date:** 2026-08-07  
 - **Squad:** Realtime & Media (Accountable); Platform (Consulted)  
-- **Related epics:** E-105, E-301, E-603  
+- **Related epics:** E-301, E-603  
 
 ---
 
@@ -18,7 +18,7 @@ Early product iterations used managed pub/sub (Ably), then a **Mongo-backed even
 1. **Primary app API** remains dual Vercel projects: `client/` SPA + `server/` Express.  
 2. **Primary signaling / fan-out (Year 1)** remains **Mongo event bus + HTTP poll/long-poll** (`GET/POST /api/rooms/:roomId/events`, presence heartbeats). No Socket.io server on Vercel.  
 3. **Do not** reintroduce a third-party pub/sub as the *required* production bus unless ADR-001 is amended with cost/SLO justification.  
-4. **Year 1 exit for the bus:** published SLOs (p95 delivery), indexes, backpressure, load tests (epic E-105, E-301).  
+4. **Year 1 exit for the bus:** published SLOs (p95 delivery), indexes, backpressure, load tests (see `docs/slo/signaling.md`, epic E-301).  
 5. **Year 2:** If SLOs cannot be met with poll/long-poll under multi-region load, evaluate a **dedicated realtime edge** (e.g. Cloudflare Durable Objects, PartyKit-class, or regional Node fleet) — still **not** “Socket.io bolted onto Vercel Hobby/Pro as the only listener.” Record the choice as an **addendum** to this ADR.  
 6. **SFU** (media) is orthogonal and covered by [ADR-002](./ADR-002-sfu-evaluation.md); SFU does not replace app-level chat/host event persistence.
 
@@ -51,7 +51,7 @@ Early product iterations used managed pub/sub (Ably), then a **Mongo-backed even
 
 ## Validation
 
-- Load tests and SLO dashboards (E-105).  
+- Load tests and SLO checks (`docs/slo/signaling.md`, `/api/health` metrics).  
 - Y1Q3 go/no-go on long-poll/SSE (E-301).  
 - Amend this ADR if a dedicated edge is selected in Y2Q2 (E-603).
 

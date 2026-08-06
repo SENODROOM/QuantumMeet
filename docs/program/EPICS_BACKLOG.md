@@ -23,14 +23,7 @@ Prior in-repo spikes (tokens, long-poll, cron, flags) reduce some Y1Q1 epic size
 
 ### Y1Q1 — Trust & call quality
 
-| ID | Epic | Squad | Size (sw) | Depends | Status |
-|----|------|-------|-----------|---------|--------|
-| E-101 | Production TURN (dedicated, creds, monitoring, runbook) | RT | 4–6 | — | backlog |
-| E-102 | ICE policy, failover tests, client config hardening | RT | 2–3 | E-101 | backlog |
-| E-105 | Signaling SLO doc + dashboards (p95 delivery) | RT + PL | 2–3 | — | backlog |
-| E-106 | Observability: tracing, error budgets, Sentry required in prod | PL | 4–5 | — | backlog |
-| E-108 | Staging = prod-like (data, secrets, synthetic checks) | PL | 3–4 | E-106 | backlog |
-| E-110 | P0 on-call + paging + incident runbooks | PL | 2–3 | E-106 | backlog |
+*(Solo IC pulled these; rows removed so squads do not re-pull: E-101 TURN/`/api/ice`, E-106 request-id + structured logs, E-108 staging checklist + synthetic health.)*
 
 ### Y1Q2 — Classroom depth & org tenancy
 
@@ -45,23 +38,23 @@ Prior in-repo spikes (tokens, long-poll, cron, flags) reduce some Y1Q1 epic size
 | E-207 | Recording → Blob upload + retention enforcement | MT + PL | 4–5 | — | backlog |
 | E-208 | Waiting room / knock polish | MT | 2–3 | — | backlog |
 | E-209 | Mesh soft-cap UX + teacher/host messaging | MT + RT | 2 | — | backlog |
-| E-210 | Backup/restore drills + cost dashboards | PL | 3–4 | E-106 | backlog |
-| E-211 | Preview environments per PR | PL | 3–4 | E-108 | backlog |
+| E-210 | Backup/restore drills + cost dashboards | PL | 3–4 | — | backlog |
+| E-211 | Preview environments per PR | PL | 3–4 | — | backlog |
 
 ### Y1Q3 — Scale small rooms; prepare large rooms
 
 | ID | Epic | Squad | Size (sw) | Depends | Status |
 |----|------|-------|-----------|---------|--------|
-| E-301 | Long-poll/SSE at load — prove or kill vs SLO | RT | 4–6 | E-105 | backlog |
+| E-301 | Long-poll/SSE at load — prove or kill vs SLO | RT | 4–6 | — | backlog |
 | E-302 | Whiteboard bandwidth budget + coalescing | RT + MT | 3–4 | E-301 | backlog |
 | E-303 | Presence correctness under multi-tab / flaky network | RT | 3–4 | — | backlog |
 | E-304 | SFU vendor spike (LiveKit / mediasoup / managed) | RT | 4–6 | — | backlog |
 | E-305 | **ADR-002** accepted + sandbox ≥30 peers | RT | 2–3 | E-304 | backlog |
 | E-306 | Breakout parity with host tool checklist | MT | 4–5 | — | backlog |
-| E-307 | Call quality indicators (loss/bitrate UI) | MT + RT | 3–4 | E-105 | backlog |
+| E-307 | Call quality indicators (loss/bitrate UI) | MT + RT | 3–4 | — | backlog |
 | E-308 | Attendance automation + teacher trust study | CL | 4–5 | — | backlog |
 | E-309 | Atlas capacity plan + PII data map | PL | 3–4 | — | backlog |
-| E-310 | SOC2-ready logging / access controls plan | PL | 3–4 | E-106 | backlog |
+| E-310 | SOC2-ready logging / access controls plan | PL | 3–4 | — | backlog |
 
 ### Y1Q4 — Enterprise readiness v1
 
@@ -74,7 +67,7 @@ Prior in-repo spikes (tokens, long-poll, cron, flags) reduce some Y1Q1 epic size
 | E-405 | Billing seats + per-org feature flags | GR | 5–7 | E-205 | backlog |
 | E-406 | Admin console v1 | GR | 4–6 | E-205 | backlog |
 | E-407 | E2E suite: join, chat, knock, grade, attendance | PL + QA | 5–7 | — | backlog |
-| E-408 | Chaos tests Mongo/Vercel failure modes | PL | 3–4 | E-108 | backlog |
+| E-408 | Chaos tests Mongo/Vercel failure modes | PL | 3–4 | — | backlog |
 | E-409 | Public API draft + eng handbook | PL + PM | 3–4 | — | backlog |
 
 ---
@@ -138,11 +131,9 @@ Prior in-repo spikes (tokens, long-poll, cron, flags) reduce some Y1Q1 epic size
 
 ---
 
-## Pull order guidance (Y1Q1 first month)
+## Pull order guidance (next)
 
-1. E-106, E-101 (parallel)  
-2. E-110, E-108  
-3. E-105, E-102  
+Y1Q1 trust/call-quality rows are cleared. Next squad pulls start at **Y1Q2** (e.g. E-201, E-203, E-205, E-207–E-209) or Y1Q3 realtime scale (E-301+) as capacity allows.
 
 ---
 
