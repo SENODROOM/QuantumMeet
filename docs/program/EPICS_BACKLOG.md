@@ -29,32 +29,18 @@ Prior in-repo spikes (tokens, long-poll, cron, flags) reduce some Y1Q1 epic size
 
 | ID | Epic | Squad | Size (sw) | Depends | Status |
 |----|------|-------|-----------|---------|--------|
-| E-201 | Assignments pipeline + late policies | CL | 5–7 | — | backlog |
-| E-202 | Quiz integrity + gradebook export | CL | 4–6 | E-201 | backlog |
-| E-203 | Scheduled content UX + cron reliability soak | CL + PL | 3–4 | — | backlog |
-| E-204 | Materials library v1 | CL | 3–4 | — | backlog |
 | E-205 | Orgs/workspaces + RBAC | GR | 6–8 | — | backlog |
-| E-206 | Invite flows + admin audit trail | GR | 3–4 | E-205 | backlog |
-| E-207 | Recording → Blob upload + retention enforcement | MT + PL | 4–5 | — | backlog |
-| E-208 | Waiting room / knock polish | MT | 2–3 | — | backlog |
-| E-209 | Mesh soft-cap UX + teacher/host messaging | MT + RT | 2 | — | backlog |
-| E-210 | Backup/restore drills + cost dashboards | PL | 3–4 | — | backlog |
-| E-211 | Preview environments per PR | PL | 3–4 | — | backlog |
+
+*(Removed after multi-squad 30m push: E-201–E-204, E-206–E-211. API invite/role endpoints exist under growth; full org product UI remains E-205.)*
 
 ### Y1Q3 — Scale small rooms; prepare large rooms
 
 | ID | Epic | Squad | Size (sw) | Depends | Status |
 |----|------|-------|-----------|---------|--------|
-| E-301 | Long-poll/SSE at load — prove or kill vs SLO | RT | 4–6 | — | backlog |
-| E-302 | Whiteboard bandwidth budget + coalescing | RT + MT | 3–4 | E-301 | backlog |
-| E-303 | Presence correctness under multi-tab / flaky network | RT | 3–4 | — | backlog |
 | E-304 | SFU vendor spike (LiveKit / mediasoup / managed) | RT | 4–6 | — | backlog |
 | E-305 | **ADR-002** accepted + sandbox ≥30 peers | RT | 2–3 | E-304 | backlog |
-| E-306 | Breakout parity with host tool checklist | MT | 4–5 | — | backlog |
-| E-307 | Call quality indicators (loss/bitrate UI) | MT + RT | 3–4 | — | backlog |
-| E-308 | Attendance automation + teacher trust study | CL | 4–5 | — | backlog |
-| E-309 | Atlas capacity plan + PII data map | PL | 3–4 | — | backlog |
-| E-310 | SOC2-ready logging / access controls plan | PL | 3–4 | — | backlog |
+
+*(Removed: E-301–E-303, E-306–E-310. Spike notes: `docs/adr/SFU_SPIKE_NOTES.md`.)*
 
 ### Y1Q4 — Enterprise readiness v1
 
@@ -62,13 +48,13 @@ Prior in-repo spikes (tokens, long-poll, cron, flags) reduce some Y1Q1 epic size
 |----|------|-------|-----------|---------|--------|
 | E-401 | SSO SAML and/or OIDC for orgs | GR | 6–8 | E-205 | backlog |
 | E-402 | SCIM stretch (or explicit defer) | GR | 3–5 | E-401 | backlog |
-| E-403 | Retention + export/delete self-serve | GR + CL | 4–5 | E-309 | backlog |
-| E-404 | DPA templates + residency plan (legal + eng) | PL + GR | 2–3 | E-309 | backlog |
+| E-403 | Retention + export/delete self-serve | GR + CL | 4–5 | — | backlog |
+| E-404 | DPA templates + residency plan (legal + eng) | PL + GR | 2–3 | — | backlog |
 | E-405 | Billing seats + per-org feature flags | GR | 5–7 | E-205 | backlog |
 | E-406 | Admin console v1 | GR | 4–6 | E-205 | backlog |
 | E-407 | E2E suite: join, chat, knock, grade, attendance | PL + QA | 5–7 | — | backlog |
-| E-408 | Chaos tests Mongo/Vercel failure modes | PL | 3–4 | — | backlog |
-| E-409 | Public API draft + eng handbook | PL + PM | 3–4 | — | backlog |
+
+*(Removed light docs: E-408, E-409 → `docs/runbooks/chaos.md`, `docs/program/PUBLIC_API_DRAFT.md`. Smoke/join e2e scaffolding left; E-407 stays until full suite.)*
 
 ---
 
