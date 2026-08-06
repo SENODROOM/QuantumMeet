@@ -2,7 +2,7 @@
 
 Finished light work is **removed** (not marked done).
 
-**Deploy constraint:** Vercel serverless + WebRTC mesh + Mongo HTTP signaling. **No hosted SFU (e.g. LiveKit).**
+**Deploy constraint:** Vercel serverless + WebRTC mesh + Mongo HTTP signaling. **No hosted SFU.**
 
 ---
 
@@ -20,7 +20,7 @@ Finished light work is **removed** (not marked done).
 
 ## Year 1–2 feature rows
 
-*(Cleared — mesh/serverless path is the product. Soft-cap UX + browser simulcast helpers remain in code.)*
+*(Cleared — remaining proof work lives in [OKRS_Y1.md](./OKRS_Y1.md) / [OKRS_Y2.md](./OKRS_Y2.md).)*
 
 ---
 
@@ -37,13 +37,14 @@ Finished light work is **removed** (not marked done).
 
 ## Pull order (next)
 
-1. Remaining Y1Q1 OKRs (TURN live, SLO met, on-call, CI gates)  
-2. Atlas/Vercel reliability (E-903)  
-3. Security review cadence (E-901)  
+1. Live TURN + staging signaling SLO (Y1Q1)  
+2. Pilot orgs + scheduled-post soak (Y1Q2)  
+3. Atlas multi-region + DR restore (Y2Q2)  
+4. Standing E-901 / E-903  
 
 ---
 
 ## Related
 
-- [ADR-001](../adr/ADR-001-realtime-strategy.md) · [ADR-002](../adr/ADR-002-sfu-evaluation.md) (mesh-only)  
+- [ADR-001](../adr/ADR-001-realtime-strategy.md) · [ADR-002](../adr/ADR-002-sfu-evaluation.md)  
 - [ORG.md](./ORG.md) · [CAPACITY.md](./CAPACITY.md)  

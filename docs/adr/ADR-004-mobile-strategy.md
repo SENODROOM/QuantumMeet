@@ -1,6 +1,6 @@
 # ADR-004 — Mobile client strategy
 
-- **Status:** Proposed  
+- **Status:** Accepted  
 - **Date:** 2026-08-07  
 - **Squad:** Growth (Accountable); Meetings, Classroom (Consulted)  
 - **Related:** Y2Q3 mobile OKRs  
@@ -19,9 +19,9 @@ QuantumMeet is a React web app (CRA) with WebRTC mesh + Mongo HTTP signaling. Te
 | **Capacitor** wrap | Native shell, reuse React | Plugin surface for media |
 | **React Native** | Best device APIs | Parallel product; highest cost |
 
-## Decision (proposed)
+## Decision
 
-1. **Y2Q3 default:** ship **PWA+** (installable, offline shell, permission UX) as GA mobile for meetings + classroom browse.  
+1. **Default:** ship **PWA+** (installable via `manifest.json` + `sw.js`, permission UX) as GA mobile for meetings + classroom browse.  
 2. Spike **Capacitor** only if PWA fails camera/mic or App Store requirement.  
 3. Defer full **React Native** unless enterprise mobile SLA demands it (revisit after PWA+ GA).
 

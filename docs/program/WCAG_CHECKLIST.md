@@ -9,10 +9,10 @@
 
 ## Checks
 
-- [ ] Keyboard only  
-- [ ] Visible focus  
-- [ ] Labels / `aria-*` on icon buttons  
-- [ ] Contrast ≥ 4.5:1 body text  
-- [ ] Live regions for knock/toast  
+- [x] Keyboard only (primary chrome: Home, Room controls, Classroom tabs)  
+- [x] Visible focus (browser default + button outlines)  
+- [x] Labels / `aria-*` on icon buttons (Room soft-cap dismiss, key controls)  
+- [ ] Contrast ≥ 4.5:1 body text (spot-check remaining amber chips)  
+- [x] Live regions for knock/toast (`role="status"` soft-cap + waiting UI)  
 
-Remediate blockers before marketing “accessible classrooms.”
+Remediate remaining contrast blockers before marketing “accessible classrooms.”

@@ -14,9 +14,11 @@ Game day: pick 2 rows, time recovery, file follow-ups. Do **not** disable fail-c
 
 | Field | Value |
 |-------|-------|
-| Date | |
-| Owner | |
-| Failures exercised | |
-| RPO observed | |
-| RTO observed | |
-| Follow-ups filed | |
+| Date | 2026-08-07 |
+| Owner | Platform (light drill) |
+| Failures exercised | Mongo unavailable path (CI_ALLOW_NO_DB + health 503); media policy mesh_only |
+| RPO observed | N/A (stateless API) |
+| RTO observed | Health recovers when Mongo returns |
+| Fixes filed | Keep fail-closed; document CI_ALLOW_NO_DB for smoke only |
+
+Script: `server/scripts/chaos-smoke.js`
