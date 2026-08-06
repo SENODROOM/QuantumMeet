@@ -3,7 +3,7 @@
 - **Status:** Proposed  
 - **Date:** 2026-08-07  
 - **Squad:** Growth (Accountable); Meetings, Classroom (Consulted)  
-- **Related epics:** E-701, E-702, E-703  
+- **Related:** Y2Q3 mobile OKRs  
 
 ---
 
@@ -27,6 +27,6 @@ QuantumMeet is a React web app (CRA) with WebRTC mesh + Mongo HTTP signaling. Te
 
 ## Consequences
 
-- Invest in mobile WebRTC permission / degraded modes (E-703) on web first.  
+- Invest in mobile WebRTC permission / degraded modes on web first.  
 - Mesh WebRTC path stays web-first ([ADR-002](./ADR-002-sfu-evaluation.md)).  
 - Do not fork classroom LMS into native for Y2.

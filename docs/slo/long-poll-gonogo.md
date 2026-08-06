@@ -1,4 +1,4 @@
-# Long-poll go/no-go (E-301 light)
+# Long-poll go/no-go
 
 Run against a live API (local or staging):
 

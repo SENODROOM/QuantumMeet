@@ -1,4 +1,4 @@
-# Localization plan (E-805 light)
+# Localization plan
 
 ## Scope Y2
 

@@ -1,4 +1,4 @@
-# Dual-region signaling SLO (E-605)
+# Dual-region signaling SLO
 
 ## Targets
 
@@ -26,4 +26,4 @@ Health JSON includes `region` from `ATLAS_PRIMARY_REGION` / `QM_REGION`.
 
 ## Fail
 
-If secondary list p95 &gt; 450ms consistently → do not route users there; open E-603 edge evaluation.
+If secondary list p95 &gt; 450ms consistently → do not route users there; trigger ADR-001 edge evaluation.

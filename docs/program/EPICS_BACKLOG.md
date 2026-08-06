@@ -37,7 +37,7 @@ Finished light work is **removed** (not marked done).
 
 ## Pull order (next)
 
-1. Mesh quality under soft-cap (product + RT)  
+1. Remaining Y1Q1 OKRs (TURN live, SLO met, on-call, CI gates)  
 2. Atlas/Vercel reliability (E-903)  
 3. Security review cadence (E-901)  
 

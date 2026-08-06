@@ -1,4 +1,4 @@
-# SecretMeet keep vs sunset (E-803)
+# SecretMeet keep vs sunset
 
 ## Options
 

@@ -1,4 +1,4 @@
-# Public API draft (E-409 light)
+# Public API draft
 
 Base: `{API}/api`
 

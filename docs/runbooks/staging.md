@@ -1,4 +1,4 @@
-# Staging ≈ prod checklist (E-108 light)
+# Staging ≈ prod checklist
 
 ## Parity requirements
 

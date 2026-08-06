@@ -1,4 +1,4 @@
-# SOC2-oriented logging / access (E-310 light)
+# SOC2-oriented logging / access
 
 ## Logging
 

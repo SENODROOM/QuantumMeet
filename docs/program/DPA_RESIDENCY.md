@@ -1,10 +1,10 @@
-# DPA / residency plan (E-404 light)
+# DPA / residency plan
 
 ## Draft posture
 
 - **Controller:** QuantumLogics (product operator).  
 - **Processors:** MongoDB Atlas, Vercel, TURN provider, optional Sentry.  
-- **Residency:** Primary region = Atlas cluster region chosen at provision (document in runbook). No multi-region until E-601.  
+- **Residency:** Primary region = Atlas cluster region chosen at provision (document in runbook). No multi-region until Y2Q2 OKRs.  
 - **DPA:** Use Atlas/Vercel standard DPAs; customer DPA template TBD with legal.  
 
 ## Engineering obligations

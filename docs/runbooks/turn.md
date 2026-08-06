@@ -1,4 +1,4 @@
-# Production TURN runbook (E-101)
+# Production TURN runbook
 
 ## Goal
 

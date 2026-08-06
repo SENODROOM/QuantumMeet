@@ -1,4 +1,4 @@
-# Atlas capacity + PII map (E-309 light)
+# Atlas capacity + PII map
 
 ## Capacity (starting points)
 
@@ -17,7 +17,7 @@ Watch Atlas Metrics: connections, opcounters, disk. Alert at 70% storage / CPU.
 |------|-------|-----------|
 | Display name / userId | Presence, chat, classroom members | Room/session scoped + LMS |
 | Email (auth) | User accounts | Until account delete |
-| Recordings (blob URL) | Audit + Blob | Until retention job (E-207) |
+| Recordings (blob URL) | Audit + Blob | Until retention purge job |
 | Invite codes | Classroom | Rotate via regenerate |
 
 Do not log full JWT or TURN credentials.

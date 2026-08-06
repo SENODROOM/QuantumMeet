@@ -4,6 +4,8 @@
 **Constraint:** No hosted SFU — media stays WebRTC mesh ([ADR-002](../adr/ADR-002-sfu-evaluation.md)).  
 **Prerequisite:** Year-1 exits met or explicitly waived by EM + PM in writing.
 
+Finished light work is **removed** from this file (not marked done).
+
 ---
 
 ## Y2Q1 — Mesh quality & soft-cap product
@@ -17,9 +19,8 @@ O5: Small/medium rooms stay high-quality mesh; hosts get clear soft-cap guidance
 | KR5.2 Mesh simulcast / bandwidth adaptation | Realtime | Measurable quality gain |
 | KR5.3 Reconnection under network flap | Realtime | ≥ agreed recover rate |
 | KR5.4 Cost model $/MAU (Atlas + Vercel + TURN) | Platform | Dashboard live |
-| KR5.5 Client recording option evaluated or shipped | Realtime + Meetings | ADR or feature |
 
-**Exit:** Soft-cap + mesh quality path documented; no paid SFU dependency.
+**Exit:** Soft-cap + mesh quality path validated; cost model tracked.
 
 ---
 
@@ -50,7 +51,6 @@ O7: Mobile clients and school IT integrations are production-grade.
 | KR7.1 Mobile strategy ADR (RN vs Capacitor vs PWA+) accepted | Growth | Signed |
 | KR7.2 Mobile GA for join + classroom teacher/student core flows | Growth + Meetings + Classroom | Store or PWA GA |
 | KR7.3 LTI 1.3 OR calendar (ICS/Google/Outlook) in production | Classroom + Growth | ≥1 integration GA |
-| KR7.4 Webhooks GA with signing + retries | Growth | Documented SLA |
 | KR7.5 Partner/public API with API keys + rate limits | Growth + Platform | External pilot using it |
 
 **Exit:** At least one mobile path + one integration path in production use.
@@ -65,7 +65,6 @@ O8: Product is operable at scale with analytics, a11y, and clear SecretMeet fate
 | Key result | Squad | Target |
 |------------|-------|--------|
 | KR8.1 Teacher analytics (engagement, attendance trends, at-risk) | Classroom | GA for paid orgs |
-| KR8.2 Classroom templates / content starter packs | Classroom + Design | Launched |
 | KR8.3 SecretMeet: moderation at scale **or** sunset decision | Meetings + Growth | Written decision executed |
 | KR8.4 WCAG target level agreed + critical flows audited | Design + all product squads | Audit passed or remediated |
 | KR8.5 Localization: EN + 1–2 locales | Growth + product | Shipped |

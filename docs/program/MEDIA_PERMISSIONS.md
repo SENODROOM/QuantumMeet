@@ -1,4 +1,4 @@
-# Camera / mic permission UX (E-703 light)
+# Camera / mic permission UX
 
 ## Modes
 

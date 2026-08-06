@@ -1,4 +1,4 @@
-# Cost / MAU reporting (E-806 light)
+# Cost / MAU reporting
 
 ## Inputs
 

@@ -1,4 +1,4 @@
-# Atlas backup / restore drill (E-210)
+# Atlas backup / restore drill
 
 ## Cadence
 
@@ -24,5 +24,5 @@ Quarterly restore drill. Record date + owner in the table below.
 
 ## Cost glance
 
-- Atlas backup $/mo vs cluster tier — note in quarterly cost review (E-806 later).
-- Vercel Blob storage for recordings — purge policy TBD (E-207 retention).
+- Atlas backup $/mo vs cluster tier — note in quarterly cost review.
+- Vercel Blob storage for recordings — purge policy TBD (retention KR).

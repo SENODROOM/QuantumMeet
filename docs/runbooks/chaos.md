@@ -1,4 +1,4 @@
-# Chaos / failure modes (E-408 light)
+# Chaos / failure modes
 
 | Failure | Expect | Verify |
 |---------|--------|--------|
@@ -10,7 +10,7 @@
 
 Game day: pick 2 rows, time recovery, file follow-ups. Do **not** disable fail-closed to “fix” prod.
 
-## Game day template (E-604)
+## Game day template
 
 | Field | Value |
 |-------|-------|

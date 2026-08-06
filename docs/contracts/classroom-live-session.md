@@ -26,7 +26,7 @@
 - If Mongo is down, room create returns **503** `DB_UNAVAILABLE`.
 - Rotate host token: `POST /api/rooms/:roomId/token/rotate` with current `roomToken`.
 
-## Out of scope (later epics)
+## Out of scope (later)
 
-- Soft-cap mesh warnings (lecture rooms stay P2P)  
 - Server-side recording egress  
+

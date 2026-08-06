@@ -1,4 +1,4 @@
-# WCAG critical-flow audit checklist (E-804 light)
+# WCAG critical-flow audit checklist
 
 ## Flows to audit first
 
