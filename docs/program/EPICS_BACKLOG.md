@@ -133,7 +133,7 @@ Prior in-repo spikes (tokens, long-poll, cron, flags) reduce some Y1Q1 epic size
 
 ## Pull order guidance (next)
 
-Y1Q1 trust/call-quality rows are cleared. Next squad pulls start at **Y1Q2** (e.g. E-201, E-203, E-205, E-207–E-209) or Y1Q3 realtime scale (E-301+) as capacity allows.
+Y1Q1 cleared. Solo IC next pulls from **Y1Q2** (classroom/meetings) and light **Y1Q3** realtime scale as capacity allows.
 
 ---
 
