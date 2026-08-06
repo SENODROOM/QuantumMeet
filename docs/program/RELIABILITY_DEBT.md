@@ -4,7 +4,6 @@ Cadence: spend ~15% Platform capacity. Paid-down items are **removed** (not mark
 
 | Date | Item | Owner | Result |
 |------|------|-------|--------|
-| | Mongo connection storm under Vercel concurrency | PL | Open |
-| | Presence stale GC under multi-tab races | RT | Open |
+| | | | *(none open)* |
 
 Do not close this epic — it is continuous capacity, not a feature.

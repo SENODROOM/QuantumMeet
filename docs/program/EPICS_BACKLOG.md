@@ -26,20 +26,13 @@ Finished work is **removed** (not marked done).
 
 ## Standing / always-on
 
-| ID | Epic | Squad | Cadence |
-|----|------|-------|---------|
-| E-901 | Security review / pen test remediation | PL + RT | Quarterly |
-| E-902 | Design system evolution | Design + MT/CL | Continuous |
-| E-903 | Reliability debt (15% Platform capacity) | PL | Continuous |
-| E-904 | Hiring & leveling | EM | Continuous |
+*(Cleared for current cycle — security review, reliability debt pay-down, design tokens, hiring rubric shipped. Re-open rows next quarter as needed.)*
 
 ---
 
 ## Pull order (next)
 
-1. Security review cadence (E-901)  
-2. Reliability debt (E-903)  
-3. Design system (E-902)  
+*(None — standing cycle complete. Revisit quarterly.)*
 
 ---
 
@@ -47,3 +40,5 @@ Finished work is **removed** (not marked done).
 
 - [ADR-001](../adr/ADR-001-realtime-strategy.md) · [ADR-002](../adr/ADR-002-sfu-evaluation.md)  
 - [ORG.md](./ORG.md) · [CAPACITY.md](./CAPACITY.md)  
+- [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) · [HIRING_LEVELING.md](./HIRING_LEVELING.md)  
+- [RELIABILITY_DEBT.md](./RELIABILITY_DEBT.md) · [../runbooks/security-review.md](../runbooks/security-review.md)  

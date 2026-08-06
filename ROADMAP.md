@@ -33,7 +33,7 @@ flowchart LR
 
 ## Standing work
 
-Continuous: security reviews, reliability debt, design system, hiring — see [EPICS_BACKLOG.md](docs/program/EPICS_BACKLOG.md).
+*(Current cycle cleared — see [EPICS_BACKLOG.md](docs/program/EPICS_BACKLOG.md). Re-open quarterly for security / reliability / design / hiring.)*
 
 ---
 
