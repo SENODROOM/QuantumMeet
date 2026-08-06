@@ -1,9 +1,9 @@
-# ⬡ QuantumMeet
+# QuantumMeet
 
 > **Video calls at the speed of light.**  
-> A full-stack, real-time video conferencing app built with MERN, WebRTC, Ably, and Vercel serverless.
+> A full-stack, real-time video conferencing app built with MERN, WebRTC, and Vercel serverless.
 
-![QuantumMeet Banner](https://placehold.co/900x300/050810/00d4ff?text=⬡+QuantumMeet&font=monospace)
+![QuantumMeet Banner](https://placehold.co/900x300/050810/00d4ff?text=QuantumMeet&font=monospace)
 
 ---
 
@@ -21,7 +21,7 @@
 | **Breakout Rooms** | Split the main meeting into smaller sub-rooms |
 | **SecretMeet** | Anonymous random matching for instant 1-on-1 networking |
 | **Audio / Video / Screen** | Mute, camera toggle, and screen sharing |
-| **In-Room Chat** | Real-time text messaging via Ably + REST |
+| **In-Room Chat** | Text messaging via REST + Mongo event fan-out |
 | **P2P Encrypted** | Direct WebRTC connections (no video relayed through server) |
 | **MongoDB Rooms** | Rooms and meeting state auto-expire after 24 hours |
 | **No Signup** | Enter a name and go — no account required for meetings |
@@ -34,16 +34,15 @@
 QuantumMeet/
 ├── server/                 # Express API (Vercel serverless)
 │   ├── index.js            # App entry (listen locally / export for Vercel)
-│   ├── roomRealtime.js     # Meeting room REST + Ably fan-out
-│   ├── realtimeToken.js    # Ably token minting
-│   ├── lib/ably.js         # Ably REST client
+│   ├── roomRealtime.js     # Meeting room REST + event bus
+│   ├── lib/events.js       # Mongo publish / presence / poll helpers
 │   ├── lib/db.js           # Cached Mongo connection
 │   ├── vercel.json         # Serverless rewrites
 │   └── .env.example
 │
 ├── client/                 # React SPA (Vercel static)
 │   ├── src/
-│   │   ├── lib/realtimeClient.js  # Ably + REST (socket-shaped API)
+│   │   ├── lib/realtimeClient.js  # REST poll + presence (socket-shaped API)
 │   │   ├── hooks/useWebRTC.js
 │   │   ├── pages/Home.js, Room.js
 │   │   └── components/
@@ -57,20 +56,20 @@ QuantumMeet/
 ### How It Works
 
 ```
-Client A                     API (Vercel)              Ably                 Client B
+Client A                     API (Vercel)              Mongo                Client B
    |                              |                      |                      |
-   |── POST /api/rooms ──────────>|                      |                      |
+   |── POST /api/rooms ──────────>|── Room.create ───────>|                      |
    |<─ { roomId, link } ──────────|                      |                      |
    |                              |                      |                      |
-   |── POST /api/realtime/token ─>|                      |                      |
-   |── Ably connect + presence ───┼─────────────────────>|                      |
-   |                              |                      |── presence / events ─>|
-   |── offer (Ably channel) ──────┼─────────────────────>|── offer ─────────────>|
+   |── POST .../presence ────────>|── Presence ──────────>|                      |
+   |── POST .../events (offer) ──>|── RoomEvent ─────────>|                      |
+   |── GET  .../events?since= ───>|── list events ───────>|                      |
+   |                              |                      |── poll events ───────>|
    |◄══════════════ P2P WebRTC (direct) ═══════════════════════════════════════►|
-   |── POST /api/rooms/.../chat ─>|── persist Mongo ────>|── chat-message ──────>|
+   |── POST .../chat ────────────>|── Message + event ───>|── poll chat-message ─>|
 ```
 
-Ephemeral signaling (WebRTC offer/answer/ICE, whiteboard strokes) goes **client → Ably**. Durable actions (chat, polls, knocks, host controls) hit the **Express API**, which persists to Mongo and publishes on Ably via REST.
+Ephemeral signaling (WebRTC offer/answer/ICE, whiteboard strokes) is written to Mongo and short-polled (~500ms). Durable actions (chat, polls, knocks, host controls) hit Express, persist, and enqueue the same event bus.
 
 ---
 
@@ -79,8 +78,7 @@ Ephemeral signaling (WebRTC offer/answer/ICE, whiteboard strokes) goes **client 
 ### Prerequisites
 
 - **Node.js** ≥ 18.x
-- **MongoDB** — local install or [MongoDB Atlas](https://www.mongodb.com/atlas) (required for shared room state)
-- **Ably** account + API key ([ably.com](https://ably.com))
+- **MongoDB** — local install or [MongoDB Atlas](https://www.mongodb.com/atlas) (required for signaling and shared room state)
 - **npm** ≥ 9.x
 
 ### 1. Clone the Project
@@ -103,7 +101,6 @@ PORT=5000
 MONGO_URI=mongodb://localhost:27017/quantummeet
 CLIENT_URL=http://localhost:3000
 JWT_SECRET=dev-secret-change-me
-ABLY_API_KEY=your-ably-key
 ```
 
 ```bash
@@ -139,7 +136,7 @@ React starts at **http://localhost:3000**.
 
 1. Browser 1: create a meeting as "Alice", copy the link, join
 2. Browser 2 / incognito: open the same link as "Bob"
-3. You should see both video streams; chat and mute signals should sync via Ably
+3. You should see both video streams; chat and mute signals sync via the event bus
 
 ### Test C: API health
 
@@ -155,7 +152,7 @@ curl http://localhost:5000/api/health
 |---|---|
 | **Frontend** | React 18, React Router v6, CSS Modules |
 | **Backend** | Node.js, Express.js (Vercel serverless) |
-| **Real-time** | Ably (pub/sub + presence) |
+| **Real-time** | Mongo event bus + short-poll REST |
 | **Video** | WebRTC (browser-native P2P) |
 | **Database** | MongoDB + Mongoose |
 | **Uploads** | Vercel Blob (classroom) |
@@ -166,8 +163,8 @@ curl http://localhost:5000/api/health
 ## Security Notes
 
 - Video/audio streams are **peer-to-peer** — they never touch the server
-- The API mints scoped Ably tokens and persists durable meeting state; signaling fan-out is Ably
-- Rooms and meeting state auto-expire in MongoDB after **24 hours**
+- The API stores short-lived signaling events and durable meeting state in Mongo
+- Rooms and meeting state auto-expire in MongoDB after **24 hours** (signaling events ~5 min)
 - Login rate limiting is in-memory per serverless instance (not shared across lambdas)
 - For production, add TURN servers for users behind strict NAT/firewalls
 
@@ -185,8 +182,7 @@ Deploy as **two Vercel projects** (not one monorepo project).
 
 | Variable | Required | Purpose |
 |---|---|---|
-| `MONGO_URI` | Yes | Shared room/chat/host state across lambdas |
-| `ABLY_API_KEY` | Yes | Token mint + REST publish |
+| `MONGO_URI` | Yes | Shared room/chat/host/signaling state across lambdas |
 | `JWT_SECRET` | Yes (classrooms) | Classroom auth |
 | `BLOB_READ_WRITE_TOKEN` | Yes (classrooms) | File uploads (auto if Blob enabled) |
 | `CLIENT_URL` | Yes | Primary frontend origin for CORS |
@@ -223,11 +219,11 @@ Preview frontends matching `quantum-meet-frontend*.vercel.app` are already allow
 
 **Participants can't see each other?**
 - Confirm both clients use the same `REACT_APP_SERVER_URL`
-- Confirm `ABLY_API_KEY` is set on the API
+- Confirm `MONGO_URI` is set and reachable from the API (signaling lives in Mongo)
 - Try TURN via `REACT_APP_ICE_SERVERS` if STUN-only fails behind strict NAT
 
 **MongoDB connection fails?**
-- Meeting state (rooms, chat, host checks) needs Mongo across serverless instances — fix `MONGO_URI`
+- Meeting state and signaling need Mongo across serverless instances — fix `MONGO_URI`
 - For Atlas: allow Vercel egress / `0.0.0.0/0` or use Atlas network access for serverless
 
 **CORS errors on preview?**
@@ -245,4 +241,4 @@ MIT — free to use, modify, and distribute.
 
 ---
 
-<p align="center">Built with WebRTC + Ably + React + Express on Vercel</p>
+<p align="center">Built with WebRTC + React + Express on Vercel</p>
