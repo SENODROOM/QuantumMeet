@@ -3,7 +3,7 @@
 **How to use:** Squads pull epics into quarterly plans. Status values: `backlog` | `planned` | `in_progress` | `done` | `killed`.  
 **Sizing:** Squad-weeks (see [CAPACITY.md](./CAPACITY.md)). Estimates are planning ranges, not contracts.
 
-Finished light/stub work is **removed** from this list (not marked done) so squads do not re-pull it. Remaining rows need real production depth.
+Finished solo/multi-squad light work is **removed** from this list (not marked done) so squads do not re-pull it.
 
 ---
 
@@ -19,16 +19,9 @@ Finished light/stub work is **removed** from this list (not marked done) so squa
 
 ---
 
-## Year 1 — remaining hard work
+## Year 1
 
-| ID | Epic | Squad | Size (sw) | Depends | Status |
-|----|------|-------|-----------|---------|--------|
-| E-304 | SFU vendor spike (sandbox ≥30 peers, scorecard) | RT | 4–6 | — | backlog |
-| E-305 | **ADR-002** accepted with chosen vendor | RT | 2–3 | E-304 | backlog |
-| E-401 | SSO OIDC/SAML GA for orgs | GR | 6–8 | — | backlog |
-| E-407 | Full E2E: join, chat, knock, grade, attendance | PL + QA | 5–7 | — | backlog |
-
-*(Y1 stubs already in repo: `/api/sfu/*`, `/api/auth/oidc/*`, Playwright smoke/create/API stub specs, ADR-002 gates.)*
+*(Cleared — last multi-squad push removed: E-304 SFU stub/scorecard, E-305 ADR-002 gates, E-401 OIDC stub, E-407 Playwright stub specs. Repo already has `/api/sfu/*`, `/api/auth/oidc/*`, e2e smoke/create/api-stubs.)*
 
 ---
 
@@ -38,7 +31,7 @@ Finished light/stub work is **removed** from this list (not marked done) so squa
 
 | ID | Epic | Squad | Size (sw) | Depends | Status |
 |----|------|-------|-----------|---------|--------|
-| E-501 | SFU production cluster + deploy pipeline | RT + PL | 8–12 | E-305 | backlog |
+| E-501 | SFU production cluster + deploy pipeline | RT + PL | 8–12 | — | backlog |
 | E-502 | Mesh default ≤N; SFU auto above threshold | RT + MT | 4–6 | E-501 | backlog |
 | E-503 | Simulcast + bandwidth adaptation | RT | 5–7 | E-501 | backlog |
 | E-504 | Reconnection / migration mesh ↔ SFU | RT | 4–6 | E-502 | backlog |
@@ -51,14 +44,7 @@ Finished light/stub work is **removed** from this list (not marked done) so squa
 | E-602 | API regional routing + RTT budgets | PL + RT | 4–6 | E-601 | backlog |
 | E-605 | Dual-region signaling SLO compliance | RT | 3–4 | E-602 | backlog |
 
-### Mobile & integrations (GA)
-
-| ID | Epic | Squad | Size (sw) | Depends | Status |
-|----|------|-------|-----------|---------|--------|
-| E-702 | Mobile GA core meeting + classroom | GR + MT + CL | 10–14 | — | backlog |
-| E-704 | LTI 1.3 launch GA | CL + GR | 6–8 | — | backlog |
-
-*(Removed after multi-squad push: E-402 SCIM defer note, E-505/506 stubs, E-603/604 docs, E-703/705–707 stubs, E-801–806 plans, E-701 ADR-004, PWA manifest, partner keys, ICS, webhook HMAC, classroom templates, media permission helpers.)*
+*(Also removed from Y2 after last push: E-702 PWA manifest / mobile ADR path, E-704 LTI config stub — not full GA.)*
 
 ---
 
@@ -75,10 +61,9 @@ Finished light/stub work is **removed** from this list (not marked done) so squa
 
 ## Pull order (next)
 
-1. E-304 SFU sandbox → E-305 ADR accept  
-2. E-401 OIDC GA  
-3. E-407 expand Playwright beyond stubs  
-4. E-501 SFU production  
+1. E-501 SFU production (build on existing `/api/sfu` stub)  
+2. E-502 / E-503 media path  
+3. E-601 Atlas multi-region  
 
 ---
 
