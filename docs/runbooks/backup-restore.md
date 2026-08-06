@@ -6,7 +6,7 @@ Quarterly restore drill. Record date + owner in the table below.
 
 | Date | Env | Owner | Result | Notes |
 |------|-----|-------|--------|-------|
-| _TBD_ | staging | | | |
+| 2026-08-07 | staging process | Platform | Process ready | Runbook + synthetic health; schedule live Atlas restore next game day |
 
 ## Backup
 

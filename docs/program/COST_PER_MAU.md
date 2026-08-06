@@ -1,15 +1,12 @@
 # Cost / MAU reporting
 
-## Inputs
+## Live endpoint
 
-| Cost driver | Source |
-|-------------|--------|
-| Atlas | Invoice / metrics |
-| Vercel | Usage |
-| TURN | Provider invoice |
-| Blob | Storage + egress |
+`GET /api/growth/cost/mau`
 
-## Formula (draft)
+Env inputs: `COST_ATLAS_USD`, `COST_VERCEL_USD`, `COST_TURN_USD`, `COST_BLOB_USD`, `COST_MAU`.
+
+## Formula
 
 `cost_per_mau = monthly_infra_usd / monthly_active_users`
 

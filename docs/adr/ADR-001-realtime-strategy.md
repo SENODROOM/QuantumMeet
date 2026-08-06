@@ -57,7 +57,12 @@ Early product iterations used managed pub/sub (Ably), then a **Mongo-backed even
 
 ## Y2 edge addendum
 
+**Status:** Accepted as contingency — **not required** while single-region poll/long-poll meets SLO.
+
 Trigger when dual-region poll RTT breaks signaling SLO. Options: edge workers for long-poll wake, or managed realtime edge. Keep media on WebRTC mesh (ADR-002) — no hosted SFU.
+
+Until triggered, remain on Mongo HTTP bus ([dual-region-signaling.md](../slo/dual-region-signaling.md)).
+
 
 ## References
 

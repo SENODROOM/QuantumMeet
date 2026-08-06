@@ -62,17 +62,17 @@ Until headcount is 25, plan **60–70%** of steady-state capacity ([CAPACITY.md]
 
 | Year | Outcome |
 |------|---------|
-| **Y1** | Shippable B2B education + meetings product; SSO/billing path; mesh soft-cap live |
-| **Y2** | Mesh quality + multi-region; mobile GA; LTI or calendar; analytics; cost/MAU |
+| **Y1** | Shippable B2B education + meetings product; pilot orgs; mesh soft-cap live |
+| **Y2** | Multi-region Atlas; mobile PWA usage; external LTI/calendar; a11y contrast |
 
 ### Milestone metrics
 
 | When | Metric |
 |------|--------|
 | M6 | Call success ≥ 95% on pilots; host-auth abuse incidents = 0 |
-| M12 | Pilot orgs active (N from PM); enterprise packaging without forks |
-| M18 | Soft-cap mesh rooms stable; signaling p95 within SLO |
-| M24 | Mobile GA; SSO GA; integration GA; cost/MAU tracked |
+| M12 | Pilot orgs active (N from PM); TURN + signaling SLO green |
+| M18 | Soft-cap mesh stable; dual-region signaling within SLO |
+| M24 | Mobile PWA usage; external integration GA; contrast audit closed |
 
 ---
 

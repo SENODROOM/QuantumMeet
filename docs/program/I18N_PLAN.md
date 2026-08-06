@@ -1,10 +1,18 @@
-# Localization plan
+# Localization
 
-## Scope Y2
+## Shipped
 
-1. Extract user-facing strings for Home, Room chrome, Classroom tabs.  
-2. Ship **EN** as source of truth.  
-3. Add **1–2** locales (candidate: ES, UR) via `i18next` or lightweight JSON maps.  
+- Lightweight catalogs: `client/src/lib/i18n.js`  
+- Locales: **EN**, **ES**, **UR**  
+- Persist via `localStorage.qm_locale`  
+
+## Usage
+
+```js
+import { t, setLocale, availableLocales } from '../lib/i18n';
+setLocale('es');
+t('home.create');
+```
 
 ## Rules
 
@@ -12,4 +20,4 @@
 - Dates via `Intl.DateTimeFormat`  
 - Keep brand name “QuantumMeet” untranslated  
 
-Defer full LMS content localization until classroom GA locales chosen by product.
+Expand Home/Room/Classroom string coverage incrementally.

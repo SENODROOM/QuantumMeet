@@ -22,7 +22,7 @@
 
 ## Escalate
 
-- Platform on-call (when staffed) + Realtime TL  
+- Follow [on-call.md](./on-call.md) roster (Platform primary + Realtime secondary)  
 - Post status to team channel with health JSON snapshot  
 
 ## After

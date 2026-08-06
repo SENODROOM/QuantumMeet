@@ -20,6 +20,8 @@ jobs:
           cache-dependency-path: server/package-lock.json
       - run: npm ci
       - run: npm test
+        env:
+          RATE_LIMIT_STORE: memory
 
   client:
     runs-on: ubuntu-latest
@@ -35,3 +37,39 @@ jobs:
           cache-dependency-path: client/package-lock.json
       - run: npm ci
       - run: npm test -- --watchAll=false --passWithNoTests
+
+  e2e-api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: |
+            server/package-lock.json
+            client/package-lock.json
+      - name: Install server
+        working-directory: server
+        run: npm ci
+      - name: Install client + Playwright
+        working-directory: client
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Start API
+        working-directory: server
+        run: |
+          CI_ALLOW_NO_DB=1 RATE_LIMIT_STORE=memory JWT_SECRET=ci-test-secret ROOM_TOKEN_SECRET=ci-room-secret node index.js &
+          sleep 3
+        env:
+          CI_ALLOW_NO_DB: "1"
+          RATE_LIMIT_STORE: memory
+          JWT_SECRET: ci-test-secret
+          ROOM_TOKEN_SECRET: ci-room-secret
+      - name: Playwright API stubs
+        working-directory: client
+        run: npx playwright test e2e/api-stubs.spec.js e2e/classroom-flows.spec.js
+        env:
+          PLAYWRIGHT_SKIP_WEBSERVER: "1"
+          REACT_APP_SERVER_URL: http://localhost:5000
