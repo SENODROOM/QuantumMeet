@@ -7,8 +7,11 @@ Base: `{API}/api`
 | Health | `GET /health`, `GET /ice` | none |
 | Rooms | `POST /rooms`, events, presence, knock | host token where noted |
 | Classroom | `/classrooms/*` | JWT |
-| Growth | `/growth/features`, schedules, orgs | JWT (+ flags) |
+| Growth | `/growth/features`, schedules, orgs, ICS | JWT (+ flags) |
+| LTI | `/lti/config` | stub |
+| SFU | `/sfu/health`, `/sfu/token` | flag + stub |
+| Partner | `/partner/keys`, `/partner/whoami` | API key (`qm_…`) |
 
 Eng handbook stub: local `npm run dev` in `server/` + `client/`; dual Vercel projects; Mongo event bus (no Socket.IO on Vercel).
 
-Partner API keys + rate limits → E-707.
+Partner keys: `POST /api/partner/keys` (JWT) issues a one-time `qm_…` secret; call `/api/partner/whoami` with `Authorization: Bearer qm_…`.

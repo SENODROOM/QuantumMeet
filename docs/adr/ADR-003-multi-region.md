@@ -10,6 +10,10 @@
 
 Education and enterprise buyers expect **latency**, **availability**, and often **data residency**. Today QuantumMeet assumes a single primary Atlas cluster and Vercel deployments with CORS for known frontends. Year-2 OKRs require multi-region Atlas, API routing, and DR drills.
 
+## Primary region env
+
+Set `ATLAS_PRIMARY_REGION` (e.g. `us-east-1`) in Platform runbooks so residency claims match the live cluster.
+
 ## Decision (directional)
 
 1. **Y1:** Single primary region production; document PII map and residency *plan* (E-309, E-404). Do not fake multi-region.  

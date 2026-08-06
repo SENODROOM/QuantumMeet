@@ -52,8 +52,12 @@ Early product iterations used managed pub/sub (Ably), then a **Mongo-backed even
 ## Validation
 
 - Load tests and SLO checks (`docs/slo/signaling.md`, `/api/health` metrics).  
-- Y1Q3 go/no-go on long-poll/SSE (E-301).  
+- Y1Q3 go/no-go on long-poll/SSE (see `docs/slo/long-poll-gonogo.md`).  
 - Amend this ADR if a dedicated edge is selected in Y2Q2 (E-603).
+
+## Y2 edge addendum (E-603)
+
+Trigger when dual-region poll RTT breaks signaling SLO. Options: edge workers for long-poll wake, or managed realtime edge. Keep media on SFU POPs (ADR-002).
 
 ## References
 

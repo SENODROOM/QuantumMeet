@@ -16,4 +16,17 @@
 4. Confirm signaling stays on Mongo bus (ADR-001); SFU = media only.
 5. Write ADR-002 decision: self-host vs managed.
 
-`FEATURE_SFU=0` until spike accepted. Soft-cap UX already warns hosts (E-209).
+## Scorecard draft (LiveKit first spike)
+
+| Criterion | LiveKit (draft) | Notes |
+|-----------|-----------------|-------|
+| WebRTC quality | 4 | Simulcast solid |
+| Ops fit | 4 | Cloud option reduces ops |
+| Cost @100 | 3 | Measure in sandbox |
+| Recording | 4 | Egress available |
+| Security | 4 | Room tokens |
+| Client SDK | 5 | React-friendly |
+| Latency | 3–4 | POP dependent |
+| Exit | 3 | Protocol portable-ish |
+
+Fill mediasoup/Daily rows during E-304 before ADR-002 accept.

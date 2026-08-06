@@ -4,6 +4,8 @@
 
 Org-scoped SSO via **OIDC** first (Azure AD / Google Workspace / Okta); SAML as stretch for legacy IdPs.
 
+SCIM (E-402) is **explicitly deferred** until SSO is GA in production. Revisit only after OIDC login works for ≥1 IdP.
+
 ## Prerequisites
 
 - Orgs GA (`FEATURE_ORGS=1`, E-205)

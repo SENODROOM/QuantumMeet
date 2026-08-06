@@ -9,3 +9,14 @@
 | Bad ICE | Media fail, signaling OK | Empty `ICE_SERVERS` + strict NAT |
 
 Game day: pick 2 rows, time recovery, file follow-ups. Do **not** disable fail-closed to “fix” prod.
+
+## Game day template (E-604)
+
+| Field | Value |
+|-------|-------|
+| Date | |
+| Owner | |
+| Failures exercised | |
+| RPO observed | |
+| RTO observed | |
+| Follow-ups filed | |

@@ -71,9 +71,12 @@ _To be filled at end of E-305:_
 - Deploy mode: _self-host / cloud / hybrid_  
 - Decision date: _TBD_  
 - Sign-off: Realtime TL, Platform TL, EM  
+- **Gate:** simulcast (or equivalent) required; sandbox ≥30 peers; scorecard ≥ 3.5  
+- Token stub: `GET /api/sfu/token` (501 until vendor wired)
 
 ## References
 
 - [ADR-001](./ADR-001-realtime-strategy.md)  
 - [OKRS_Y1.md](../program/OKRS_Y1.md) Y1Q3 / [OKRS_Y2.md](../program/OKRS_Y2.md) Y2Q1  
-- `REACT_APP_MESH_SOFT_CAP`, `FEATURE_SFU`, `SFU_THRESHOLD` (flags — not production SFU)  
+- `FEATURE_SFU`, `SFU_THRESHOLD`, `SFU_VENDOR`  
+- [SFU_SPIKE_NOTES.md](./SFU_SPIKE_NOTES.md)  
