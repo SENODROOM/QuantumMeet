@@ -172,6 +172,8 @@ curl http://localhost:5000/api/health
 
 ## Production Deployment (Vercel)
 
+See [ROADMAP.md](ROADMAP.md) for the 24-month upgrade plan.
+
 Deploy as **two Vercel projects** (not one monorepo project).
 
 ### API project
