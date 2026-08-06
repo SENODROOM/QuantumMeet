@@ -27,11 +27,7 @@ Prior in-repo spikes (tokens, long-poll, cron, flags) reduce some Y1Q1 epic size
 
 ### Y1Q2 — Classroom depth & org tenancy
 
-| ID | Epic | Squad | Size (sw) | Depends | Status |
-|----|------|-------|-----------|---------|--------|
-| E-205 | Orgs/workspaces + RBAC | GR | 6–8 | — | backlog |
-
-*(Removed after multi-squad 30m push: E-201–E-204, E-206–E-211. API invite/role endpoints exist under growth; full org product UI remains E-205.)*
+*(Cleared — org UI `/orgs`, admin stub, seats PATCH shipped. Enable with `FEATURE_ORGS=1`.)*
 
 ### Y1Q3 — Scale small rooms; prepare large rooms
 
@@ -40,21 +36,17 @@ Prior in-repo spikes (tokens, long-poll, cron, flags) reduce some Y1Q1 epic size
 | E-304 | SFU vendor spike (LiveKit / mediasoup / managed) | RT | 4–6 | — | backlog |
 | E-305 | **ADR-002** accepted + sandbox ≥30 peers | RT | 2–3 | E-304 | backlog |
 
-*(Removed: E-301–E-303, E-306–E-310. Spike notes: `docs/adr/SFU_SPIKE_NOTES.md`.)*
+*(Client now surfaces `sfuEnabled` / threshold; media SFU still pending spike.)*
 
 ### Y1Q4 — Enterprise readiness v1
 
 | ID | Epic | Squad | Size (sw) | Depends | Status |
 |----|------|-------|-----------|---------|--------|
-| E-401 | SSO SAML and/or OIDC for orgs | GR | 6–8 | E-205 | backlog |
+| E-401 | SSO SAML and/or OIDC for orgs | GR | 6–8 | — | backlog |
 | E-402 | SCIM stretch (or explicit defer) | GR | 3–5 | E-401 | backlog |
-| E-403 | Retention + export/delete self-serve | GR + CL | 4–5 | — | backlog |
-| E-404 | DPA templates + residency plan (legal + eng) | PL + GR | 2–3 | — | backlog |
-| E-405 | Billing seats + per-org feature flags | GR | 5–7 | E-205 | backlog |
-| E-406 | Admin console v1 | GR | 4–6 | E-205 | backlog |
 | E-407 | E2E suite: join, chat, knock, grade, attendance | PL + QA | 5–7 | — | backlog |
 
-*(Removed light docs: E-408, E-409 → `docs/runbooks/chaos.md`, `docs/program/PUBLIC_API_DRAFT.md`. Smoke/join e2e scaffolding left; E-407 stays until full suite.)*
+*(Removed light: E-403 export/delete, E-404 DPA doc, E-405 seats API/UI, E-406 admin stub. SSO plan: `docs/program/SSO_PLAN.md`.)*
 
 ---
 
@@ -75,9 +67,9 @@ Prior in-repo spikes (tokens, long-poll, cron, flags) reduce some Y1Q1 epic size
 
 | ID | Epic | Squad | Size (sw) | Depends | Status |
 |----|------|-------|-----------|---------|--------|
-| E-601 | Atlas multi-region | PL | 5–7 | E-309 | backlog |
+| E-601 | Atlas multi-region | PL | 5–7 | — | backlog |
 | E-602 | API regional routing + RTT budgets | PL + RT | 4–6 | E-601 | backlog |
-| E-603 | Realtime edge evaluation (ADR-001 addendum) | RT | 4–6 | E-301 | backlog |
+| E-603 | Realtime edge evaluation (ADR-001 addendum) | RT | 4–6 | — | backlog |
 | E-604 | DR / failover playbook + quarterly game day | PL | 3–4 | E-601 | backlog |
 | E-605 | Dual-region signaling SLO compliance | RT | 3–4 | E-602 | backlog |
 
@@ -85,13 +77,14 @@ Prior in-repo spikes (tokens, long-poll, cron, flags) reduce some Y1Q1 epic size
 
 | ID | Epic | Squad | Size (sw) | Depends | Status |
 |----|------|-------|-----------|---------|--------|
-| E-701 | Mobile ADR (RN vs Capacitor vs PWA+) | GR | 2–3 | — | backlog |
-| E-702 | Mobile GA core meeting + classroom flows | GR + MT + CL | 10–14 | E-701 | backlog |
+| E-702 | Mobile GA core meeting + classroom flows | GR + MT + CL | 10–14 | — | backlog |
 | E-703 | Camera/mic permission UX + degraded modes | GR + MT | 3–4 | E-702 | backlog |
-| E-704 | LTI 1.3 integration | CL + GR | 6–8 | E-205 | backlog |
+| E-704 | LTI 1.3 integration | CL + GR | 6–8 | — | backlog |
 | E-705 | Calendar ICS + Google/Outlook | GR + MT | 5–7 | — | backlog |
 | E-706 | Webhooks GA (sign, retry, DLQ) | GR | 3–4 | — | backlog |
-| E-707 | Public API keys + partner rate limits | GR + PL | 4–5 | E-409 | backlog |
+| E-707 | Public API keys + partner rate limits | GR + PL | 4–5 | — | backlog |
+
+*(Removed E-701 — ADR-004 mobile strategy proposed.)*
 
 ### Y2Q4 — Growth & polish
 
