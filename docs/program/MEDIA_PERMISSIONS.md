@@ -13,6 +13,6 @@
 
 - Prefetch permission state before `getUserMedia` where supported  
 - Never loop permission prompts after dismiss  
-- Soft-cap / SFU banners must not obscure permission dialogs  
+- Soft-cap banners must not obscure permission dialogs  
 
 PWA+ (ADR-004) should reuse these modes.

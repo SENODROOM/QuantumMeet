@@ -63,7 +63,7 @@ A “4 squad-week epic” ≈ **500 eng-hours**.
 
 | Bucket | Share of 44k hours | Hours | Examples |
 |--------|-------------------|-------|----------|
-| Realtime & Media (incl. SFU Y2) | 22% | ~9,700 | TURN, bus SLOs, SFU prod |
+| Realtime & Media (mesh + bus) | 22% | ~9,700 | TURN, bus SLOs, soft-cap quality |
 | Meetings Product | 18% | ~7,900 | Room UX, recording, calendar |
 | Classroom / LMS | 20% | ~8,800 | Gradebook, LTI, analytics |
 | Platform / Infra | 20% | ~8,800 | Observability, multi-region, security |
@@ -78,7 +78,7 @@ Adjust after each quarterly OKR review.
 
 - Not a promise that AI or a single engineer “finishes Year 2.”  
 - Not permission to mark epics done without [ORG.md definition of done](./ORG.md).  
-- Not a substitute for financial budget (infra SFU cost is separate OpEx).
+- Not a substitute for financial budget (Atlas + Vercel + TURN OpEx).
 
 ---
 

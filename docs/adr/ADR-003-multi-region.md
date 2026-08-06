@@ -20,7 +20,7 @@ Set `ATLAS_PRIMARY_REGION` (e.g. `us-east-1`) in Platform runbooks so residency 
 2. **Y2Q2:** Deploy Atlas **multi-region** (or equivalent) with clear primary write region and secondary read/failover strategy (E-601).  
 3. **API:** Introduce regional routing only after data layer supports it (E-602); measure RTT budgets for poll/long-poll.  
 4. **Realtime bus:** Prefer co-locating event storage with the API region; if cross-region poll RTT breaks SLOs, trigger ADR-001 addendum (dedicated edge) via E-603.  
-5. **SFU:** Media POPs should follow user geography independently where the SFU vendor allows ([ADR-002](./ADR-002-sfu-evaluation.md)).  
+5. **Media:** WebRTC mesh only on this deploy ([ADR-002](./ADR-002-sfu-evaluation.md)); TURN/ICE via `/api/ice`.  
 6. **DR:** Quarterly failover game days (E-604); RPO/RTO published before enterprise contracts that require them.
 
 ## Consequences

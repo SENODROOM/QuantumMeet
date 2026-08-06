@@ -1,25 +1,25 @@
 # OKRs — Year 2 (Months 12–24)
 
-**Outcome:** 100+ concurrent large-room capability via SFU; multi-tenant orgs; mobile-usable; school-IT integrations.  
+**Outcome:** Reliable mesh rooms on Vercel + Atlas; multi-tenant orgs; mobile-usable; school-IT integrations.  
+**Constraint:** No hosted SFU — media stays WebRTC mesh ([ADR-002](../adr/ADR-002-sfu-evaluation.md)).  
 **Prerequisite:** Year-1 exits met or explicitly waived by EM + PM in writing.
 
 ---
 
-## Y2Q1 — SFU production path
+## Y2Q1 — Mesh quality & soft-cap product
 
 ### Company objective
-O5: Large rooms run on SFU; small rooms stay mesh by default.
+O5: Small/medium rooms stay high-quality mesh; hosts get clear soft-cap guidance.
 
 | Key result | Squad | Target |
 |------------|-------|--------|
-| KR5.1 SFU in production behind org/room policy | Realtime | GA for opted-in orgs |
-| KR5.2 Auto mesh→SFU at threshold N | Realtime + Meetings | Configured + monitored |
-| KR5.3 Simulcast + bandwidth adaptation | Realtime | Measurable quality gain |
-| KR5.4 Reconnection under network flap | Realtime | ≥ agreed recover rate |
-| KR5.5 Cost model $/concurrent SFU participant | Platform + Realtime | Dashboard live |
-| KR5.6 Server-side recording option evaluated or shipped | Realtime + Meetings | ADR or feature |
+| KR5.1 Soft-cap UX trusted by hosts | Meetings + Realtime | Dismissal + copy validated |
+| KR5.2 Mesh simulcast / bandwidth adaptation | Realtime | Measurable quality gain |
+| KR5.3 Reconnection under network flap | Realtime | ≥ agreed recover rate |
+| KR5.4 Cost model $/MAU (Atlas + Vercel + TURN) | Platform | Dashboard live |
+| KR5.5 Client recording option evaluated or shipped | Realtime + Meetings | ADR or feature |
 
-**Exit:** Classroom lecture-sized rooms supported without mesh collapse.
+**Exit:** Soft-cap + mesh quality path documented; no paid SFU dependency.
 
 ---
 
@@ -79,7 +79,7 @@ O8: Product is operable at scale with analytics, a11y, and clear SecretMeet fate
 
 | Horizon | Metric |
 |---------|--------|
-| M18 | SFU rooms in production; p95 signaling within SLO |
+| M18 | Soft-cap mesh rooms stable; p95 signaling within SLO |
 | M24 | Mobile GA; SSO GA; LTI or calendar in production; cost/MAU tracked |
 
 ---

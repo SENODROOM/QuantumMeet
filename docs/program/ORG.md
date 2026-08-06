@@ -12,7 +12,7 @@ This document is the operating org design. It does **not** claim multi-year feat
 
 1. **Squad ownership** — one backlog, one on-call rotation per squad where applicable.
 2. **No thrash** — dual Vercel deploy (client + server) stays; no Socket.io-on-Vercel as primary realtime.
-3. **SFU is Year-2 platform work** — not a feature flag weekend.
+3. **Media = WebRTC mesh on Vercel** — no hosted SFU (LiveKit/etc.); soft-cap UX instead.
 4. **Scaffold ≠ shipped** — early code spikes in-repo are foundations only; definition of done is squad exit criteria + OKRs.
 
 ---
@@ -21,7 +21,7 @@ This document is the operating org design. It does **not** claim multi-year feat
 
 | Squad | Headcount | Mission | Primary code areas |
 |-------|-----------|---------|-------------------|
-| **Realtime & Media** | 5 | Call quality, signaling, TURN, mesh, SFU | `server/lib/events.js`, `client/src/lib/realtimeClient.js`, `client/src/hooks/useWebRTC.js`, future SFU services |
+| **Realtime & Media** | 5 | Call quality, signaling, TURN, mesh | `server/lib/events.js`, `client/src/lib/realtimeClient.js`, `client/src/hooks/useWebRTC.js` |
 | **Meetings Product** | 5 | Room UX, host tools, breakouts, recording, SecretMeet, calendar | `client/src/pages/Room.js`, `Home.js`, meeting components, `server/roomRealtime.js` |
 | **Classroom / LMS** | 5 | Posts, gradebook, attendance, LTI, teacher analytics | `server/classroom.js`, `client/src/pages/classroom/*` |
 | **Platform / Infra** | 5 | CI/CD, observability, Atlas, security, multi-region, flags | `server/vercel.json`, `server/lib/db.js`, CI, runbooks |
@@ -43,7 +43,7 @@ This document is the operating org design. It does **not** claim multi-year feat
 | Decision | Realtime | Meetings | Classroom | Platform | Growth | EM/PM |
 |----------|----------|----------|-----------|----------|--------|-------|
 | Signaling / event-bus SLO | **A** | C | C | C | I | I |
-| SFU vendor selection | **A** | C | C | C | I | C |
+| Media policy (mesh-only) | **A** | C | C | C | I | C |
 | Room UX / host flows | C | **A** | C | I | I | C |
 | LMS curriculum features | I | C | **A** | I | C | C |
 | Deploy / secrets / on-call tooling | C | I | I | **A** | I | I |

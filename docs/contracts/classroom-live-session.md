@@ -28,5 +28,5 @@
 
 ## Out of scope (later epics)
 
-- SFU lecture mode thresholds  
+- Soft-cap mesh warnings (lecture rooms stay P2P)  
 - Server-side recording egress  

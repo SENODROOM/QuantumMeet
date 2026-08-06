@@ -53,19 +53,19 @@ O2: Paying pilot schools/tutors can run a semester classroom workflow.
 ## Y1Q3 — Scale small rooms; prepare large rooms
 
 ### Company objective
-O3: Mesh is solid for ~15; SFU path is a signed decision with sandbox proof.
+O3: Mesh is solid for ~15 peers on Vercel; large-room expectations set via soft-cap UX (no hosted SFU).
 
 | Key result | Squad | Target |
 |------------|-------|--------|
 | KR3.1 Long-poll/SSE strategy proven at load vs SLO | Realtime | Report + go/no-go |
 | KR3.2 Whiteboard bandwidth budget enforced | Realtime + Meetings | Under budget at 8 peers |
-| KR3.3 SFU vendor spike + **ADR-002 accepted** | Realtime | Signed |
-| KR3.4 Sandbox SFU demo ≥ 30 peers | Realtime | Recorded demo |
+| KR3.3 **ADR-002 accepted** (mesh-only on Vercel) | Realtime | Signed |
+| KR3.4 Soft-cap UX + mesh quality helpers under load | Realtime + Meetings | Soft-cap + simulcast helpers |
 | KR3.5 Breakout parity with critical host tools | Meetings | Checklist complete |
 | KR3.6 Attendance automation teachers trust (report accuracy study) | Classroom | ≥ agreed accuracy |
 | KR3.7 PII data map + SOC2-ready logging plan | Platform | Artifacts reviewed |
 
-**Exit:** ADR-002 signed; ~15 mesh OK; 30+ peer SFU sandbox demo.
+**Exit:** ADR-002 signed; ~15 mesh OK; soft-cap messaging live.
 
 ---
 

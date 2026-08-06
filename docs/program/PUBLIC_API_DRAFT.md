@@ -9,7 +9,7 @@ Base: `{API}/api`
 | Classroom | `/classrooms/*` | JWT |
 | Growth | `/growth/features`, schedules, orgs, ICS | JWT (+ flags) |
 | LTI | `/lti/config` | stub |
-| SFU | `/sfu/health`, `/sfu/token` | flag + stub |
+| Media policy | `/sfu/health` (`mesh_only`), `/sfu/token` → 501 | none |
 | Partner | `/partner/keys`, `/partner/whoami` | API key (`qm_…`) |
 
 Eng handbook stub: local `npm run dev` in `server/` + `client/`; dual Vercel projects; Mongo event bus (no Socket.IO on Vercel).

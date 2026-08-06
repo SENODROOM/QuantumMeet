@@ -23,10 +23,10 @@ QuantumMeet is a React web app (CRA) with WebRTC mesh + Mongo HTTP signaling. Te
 
 1. **Y2Q3 default:** ship **PWA+** (installable, offline shell, permission UX) as GA mobile for meetings + classroom browse.  
 2. Spike **Capacitor** only if PWA fails camera/mic or App Store requirement.  
-3. Defer full **React Native** unless enterprise mobile SLA demands it (revisit after SFU GA).
+3. Defer full **React Native** unless enterprise mobile SLA demands it (revisit after PWA+ GA).
 
 ## Consequences
 
 - Invest in mobile WebRTC permission / degraded modes (E-703) on web first.  
-- SFU SDK choice (E-304/305) must keep a web-first client path.  
+- Mesh WebRTC path stays web-first ([ADR-002](./ADR-002-sfu-evaluation.md)).  
 - Do not fork classroom LMS into native for Y2.
